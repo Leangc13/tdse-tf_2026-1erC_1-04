@@ -1,6 +1,6 @@
 # FIUBA - Electrónica - Taller de Sistemas Embebidos
 ## Trabajo Final - Año-Cuatrimestre - Curso-Grupo: Título del Trabajo Final
-### Bitácora de Entregas
+### Bitácora de Entregas  
 | N° | Detalles | Fecha | Deadline |
 | :--: | :--------------------- | :------: | :-------: |
 | 01 | README.md | | Semana 08 |
