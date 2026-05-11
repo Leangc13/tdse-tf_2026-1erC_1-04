@@ -1,9 +1,2 @@
-# FIUBA - Electrónica - Taller de Sistemas Embebidos
-## Trabajo Final - Año-Cuatrimestre - Curso-Grupo: Título del Trabajo Final
-### Bitácora de Entregas  
-| N° | Detalles | Fecha | Deadline |
-| :--: | :--------------------- | :------: | :-------: |
-| 01 | README.md |28/5/2026 | Semana 08 |
-| 02 | Propuesta.md | 19/5/2026 | Semana 11 |
-| 03 | Informe_de_Avance.md | 26/5/2026 |  Semana 14 |
-| 04 | Memoria_Video_Código.md | 16/6/2026 | Semana 17 |
+# tdse-tf_2026-1erC_1-04
+# FIUBA - Electrónica - Taller de Sistemas Embebidos - Trabajo Final - 2026- 1 Er Cuatrimestre - 1-04: Título del Trabajo Final
