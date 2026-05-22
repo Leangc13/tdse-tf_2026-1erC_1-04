@@ -15,7 +15,8 @@
 
 ### **1.1 Objetivo del proyecto y resultados esperados**
 
-El objetivo de este proyecto es diseñar e implementar un sistema embebido de riego automático que tome decisiones inteligentes en función del estado del viento. La idea central es que el sistema **modifique o bloquee el riego según la velocidad y dirección del viento**, dado que en condiciones de viento intenso el agua se dispersa fuera de la zona de cultivo, haciendo el riego ineficiente o directamente perjudicial.
+Este proyecto está orientado al riego en zonas de viento intenso y frecuente, como la región patagónica argentina. Puede aplicarse tanto en contextos agrícolas (pequeños y grandes productores) como en espacios urbanos y domésticos: jardines, patios, plazas o cualquier instalación de riego por aspersión donde el viento sea un factor que comprometa la eficiencia del riego.
+El objetivo de este proyecto es diseñar e implementar un sistema embebido de riego automático que tome decisiones inteligentes en función del estado del viento. La idea central es que el sistema **modifique o bloquee el riego según la velocidad y dirección del viento**, dado que en condiciones de viento intenso el agua se dispersa fuera de la zona deseada, haciendo el riego ineficiente o directamente perjudicial.
 
 Para evitar complejidades mecánicas en el prototipo físico, la velocidad y la dirección del viento se **emularán mediante dos potenciómetros analógicos o un joystick** conectados al ADC del microcontrolador. El riego se representará a través de **4 sectores independientes indicados por LEDs** (Norte, Sur, Este, Oeste). La condición de luz ambiente, leída mediante una **fotocélula (LDR)** conectada al ADC, determinará si el horario es apto para regar (por ejemplo, sin riego nocturno). En función del nivel de viento se definen tres comportamientos:
 
@@ -28,6 +29,8 @@ El sistema contará con tres modos de operación:
 - **Modo NORMAL:** monitorea continuamente los sensores analógicos (joystick/potenciómetros y LDR) y activa los LEDs de sector correspondientes según los umbrales configurados.
 - **Modo SET_UP:** el usuario configura los umbrales de viento (moderado y crítico), los sectores habilitados y el horario de riego a través de un menú interactivo en pantalla LCD, o de forma remota mediante la aplicación Bluetooth.
 - **Modo FALLA:** ante viento crítico o lectura inválida de algún sensor, el sistema inhibe todos los LEDs de sector, activa el LED de falla y el buzzer, y muestra en el LCD el motivo de la falla.
+
+La condición de luz ambiente, leída mediante una fotocélula (LDR), se utiliza como referencia horaria. El usuario puede configurar en el Modo SET_UP si prefiere riego diurno, nocturno o sin restricción de horario, dado que dependiendo del cultivo y el clima, el riego nocturno puede ser más eficiente al reducir la evaporación
 
 Como resultados esperados se pretende obtener un prototipo funcional montado sobre una **placa experimental con componentes soldados** (sin protoboard ni cables Dupont), que demuestre de forma clara los tres modos de operación e implemente:
 
