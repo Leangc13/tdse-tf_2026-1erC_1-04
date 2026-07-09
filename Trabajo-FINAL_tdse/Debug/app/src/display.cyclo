@@ -1,0 +1,8 @@
+../app/src/display.c:30:13:lcd_enable_pulse	1
+../app/src/display.c:38:13:lcd_send_nibble	1
+../app/src/display.c:46:6:lcd_send_cmd	1
+../app/src/display.c:55:6:lcd_send_data	1
+../app/src/display.c:64:6:lcd_init	1
+../app/src/display.c:98:6:lcd_send_string	2
+../app/src/display.c:104:6:lcd_set_cursor	3
+../app/src/display.c:119:6:lcd_clear	1

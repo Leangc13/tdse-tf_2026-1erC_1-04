@@ -1,0 +1,8 @@
+../app/src/display.c:30:13:lcd_enable_pulse	8	static
+../app/src/display.c:38:13:lcd_send_nibble	16	static
+../app/src/display.c:46:6:lcd_send_cmd	16	static
+../app/src/display.c:55:6:lcd_send_data	16	static
+../app/src/display.c:64:6:lcd_init	8	static
+../app/src/display.c:98:6:lcd_send_string	16	static
+../app/src/display.c:104:6:lcd_set_cursor	16	static
+../app/src/display.c:119:6:lcd_clear	8	static

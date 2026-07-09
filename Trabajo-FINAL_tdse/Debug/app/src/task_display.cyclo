@@ -1,0 +1,7 @@
+../app/src/task_display.c:82:6:task_display_init	1
+../app/src/task_display.c:104:6:task_display_update	11
+../app/src/task_display.c:177:13:init_and_load_eeprom	2
+../app/src/task_display.c:201:13:render_normal_mode	4
+../app/src/task_display.c:228:13:handle_setup_navigation	11
+../app/src/task_display.c:272:13:render_setup_mode	3
+../app/src/task_display.c:293:13:render_falla_mode	2

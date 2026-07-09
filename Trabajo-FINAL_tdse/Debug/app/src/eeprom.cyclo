@@ -1,0 +1,4 @@
+../app/src/eeprom.c:56:6:eeprom_init	1
+../app/src/eeprom.c:61:6:eeprom_read_settings	3
+../app/src/eeprom.c:91:6:eeprom_write_settings	3
+../app/src/eeprom.c:119:16:calculate_checksum	2

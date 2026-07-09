@@ -1,0 +1,10 @@
+../app/src/task_system_interface.c:61:6:init_event_task_system	4	static
+../app/src/task_system_interface.c:67:6:put_event_task_system	16	static
+../app/src/task_system_interface.c:73:18:get_event_task_system	4	static
+../app/src/task_system_interface.c:79:6:any_event_task_system	4	static
+../app/src/task_system_interface.c:84:10:get_sys_wind_critical_th	4	static
+../app/src/task_system_interface.c:89:10:get_sys_wind_moderate_th	4	static
+../app/src/task_system_interface.c:94:6:is_night_irrigation_inhibited	4	static
+../app/src/task_system_interface.c:99:18:get_system_mode	4	static
+../app/src/task_system_interface.c:107:6:set_sys_wind_critical_th	16	static
+../app/src/task_system_interface.c:112:6:set_sys_wind_moderate_th	16	static

@@ -1,0 +1,4 @@
+../app/src/task_system.c:73:6:task_system_init	1
+../app/src/task_system.c:85:6:task_system_update	17
+../app/src/task_system.c:173:13:evaluate_irrigation_logic	10
+../app/src/task_system.c:212:13:suspend_irrigation	1
