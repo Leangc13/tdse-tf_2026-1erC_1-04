@@ -1,0 +1,7 @@
+../app/src/task_sensor.c:101:6:task_sensor_init	3
+../app/src/task_sensor.c:139:6:task_sensor_update	3
+../app/src/task_sensor.c:162:6:task_sensor_adc_cplt_callback	1
+../app/src/task_sensor.c:170:6:HAL_ADC_ConvCpltCallback	2
+../app/src/task_sensor.c:179:13:process_adc_data	8
+../app/src/task_sensor.c:264:13:button_debounce_update	12
+../app/src/task_sensor.c:322:13:update_dip_switches	5

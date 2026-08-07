@@ -1,0 +1,5 @@
+../app/src/task_actuator_interface.c:56:6:put_actuator_sector	16	static
+../app/src/task_actuator_interface.c:63:6:put_actuator_status_led	16	static
+../app/src/task_actuator_interface.c:70:6:put_actuator_buzzer	16	static
+../app/src/task_actuator_interface.c:75:6:get_actuator_sector_state	16	static
+../app/src/task_actuator_interface.c:81:6:get_actuator_status_led_state	16	static

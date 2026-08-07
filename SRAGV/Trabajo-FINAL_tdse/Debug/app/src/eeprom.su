@@ -1,0 +1,4 @@
+../app/src/eeprom.c:56:6:eeprom_init	4	static
+../app/src/eeprom.c:61:6:eeprom_read_settings	64	static
+../app/src/eeprom.c:93:6:eeprom_write_settings	64	static
+../app/src/eeprom.c:123:17:calculate_checksum	24	static
