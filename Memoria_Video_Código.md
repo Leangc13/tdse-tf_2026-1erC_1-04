@@ -2,7 +2,7 @@
 
 <img width="300" alt="FIUBA" src="https://github.com/Matias-J-Sanchez-Q/tdse-tf_2026-1erC_2-02/raw/main/Imagenes/logo-fiuba.png" />
 
-**TA134 – Taller de Sistemas Embebidos**
+*TA134 – Taller de Sistemas Embebidos*
 
 # Memoria del Trabajo Final: Sistema de Riego Automático con Gestión de Viento (SRAGV)
 
@@ -16,10 +16,10 @@ Sistema de riego inteligente por aspersión con inhibición de sectores en funci
 | Vargas, Joaquin           | 104323     |
 | Molina Aban, Florencia    | 104153     |
 
-**Docente:** Cruz, Juan Manuel  
-**Tutor:** Lutenberg, Ariel  
-**Fecha:** 1er cuatrimestre 2026  
-**Curso-Grupo:** 1-04
+*Docente:* Cruz, Juan Manuel  
+*Tutor:* Lutenberg, Ariel  
+*Fecha:* 1er cuatrimestre 2026  
+*Curso-Grupo:* 1-04
 
 *Trabajo realizado en la Ciudad Autónoma de Buenos Aires.*
 
@@ -89,6 +89,8 @@ En esta sección se presentan los requisitos del sistema, los casos de uso ident
 
 A lo largo del ciclo de vida del proyecto, los requisitos funcionales experimentaron una evolución. Durante la etapa de planificación, se plantearon las funcionalidades base que debía cumplir el prototipo para garantizar un control de riego eficiente y adaptable al viento. La Tabla 2.1 detalla esta primera aproximación de los requisitos.
 
+<p align="center"><em>Tabla 2.1: Requisitos funcionales preliminares (fase de ideación).</em></p>
+
 | **Grupo** | **ID** | **Descripción** |
 | :--- | :---: | :--- |
 | **Sensores analógicos** | **RQ01** | El sistema contará con un joystick analógico para emular la velocidad y dirección del viento, conectado al ADC del microcontrolador. |
@@ -98,9 +100,10 @@ A lo largo del ciclo de vida del proyecto, los requisitos funcionales experiment
 | **Comunicación** | **RQ05** | La configuración y el monitoreo podrán realizarse de forma remota mediante un módulo Bluetooth. |
 | **Almacenamiento** | **RQ06** | La configuración del usuario (umbrales de viento, sectores habilitados) se almacenará en una EEPROM externa con respaldo ante cortes de energía. |
 
-<p align="center"><em>Tabla 2.1: Requisitos funcionales preliminares (fase de ideación).</em></p>
 
 Posteriormente, conforme avanzó el desarrollo del firmware y la selección de la arquitectura de hardware, los requerimientos iniciales se desglosaron y refinaron para cubrir todos los aspectos operativos del sistema. La Tabla 2.2 presenta la versión definitiva de los requisitos implementados.
+
+<p align="center"><em>Tabla 2.2: Requisitos funcionales definitivos del sistema.</em></p>
 
 | **Grupo** | **ID** | **Descripción** |
 | :--- | :---: | :--- |
@@ -142,7 +145,6 @@ Posteriormente, conforme avanzó el desarrollo del firmware y la selección de l
 | | **10.2** | La arquitectura de software seguirá el patrón Escrutar/Procesar/Actuar, organizada de forma modular. |
 | | **10.3** | El *super-loop* completará cada vuelta en menos de 1 ms. |
 
-<p align="center"><em>Tabla 2.2: Requisitos funcionales definitivos del sistema.</em></p>
 
 En la sección 4.1 se detallan las pruebas realizadas para verificar el cumplimiento de estos requisitos.
 
@@ -152,6 +154,8 @@ Se identificaron tres casos de uso principales, detallados en las Tablas 2.3 a 2
 
 La Tabla 2.3 describe el caso de uso más frecuente: el ciclo de riego completo bajo condiciones de viento bajo.
 
+<p align="center"><em>Tabla 2.3: Caso de uso 1 — ciclo de riego completo con viento bajo.</em></p>
+
 | **Elemento** | **Definición** |
 | :--- | :--- |
 | Disparador | El temporizador interno indica que se cumplió el intervalo de riego configurado y el joystick indica velocidad de viento baja (por debajo del umbral moderado). |
@@ -159,9 +163,10 @@ La Tabla 2.3 describe el caso de uso más frecuente: el ciclo de riego completo 
 | Flujo principal | Se leen velocidad y dirección del joystick. El valor de velocidad se encuentra por debajo del umbral moderado. Los cuatro sectores habilitados se activan simultáneamente. El LCD muestra en tiempo real la velocidad (%) y dirección del viento, y el estado de cada sector. Una vez transcurrido el tiempo de riego configurado, el sistema entra en la fase de descanso y apaga todos los sectores hasta que se cumple el intervalo de reposo. |
 | Flujo alternativo A | Durante el ciclo, el joystick supera el umbral crítico: el sistema transita al Modo FALLA, apaga todos los sectores y activa la alarma sonora y visual. |
 
-<p align="center"><em>Tabla 2.3: Caso de uso 1 — ciclo de riego completo con viento bajo.</em></p>
 
 La Tabla 2.4 describe el caso de uso de riego parcial, que constituye el escenario central del sistema: la inhibición de sectores por viento moderado.
+
+<p align="center"><em>Tabla 2.4: Caso de uso 2 — riego parcial por viento moderado.</em></p>
 
 | **Elemento** | **Definición** |
 | :--- | :--- |
@@ -172,9 +177,10 @@ La Tabla 2.4 describe el caso de uso de riego parcial, que constituye el escenar
 | Flujo alternativo B | La velocidad de viento cae por debajo del umbral moderado: el sector inhibido se reactiva automáticamente. |
 | Flujo alternativo C | El usuario activa la inhibición manual por DIP *switch*: el sector correspondiente se fuerza apagado independientemente de las condiciones del viento. |
 
-<p align="center"><em>Tabla 2.4: Caso de uso 2 — riego parcial por viento moderado.</em></p>
 
 Por último, la Tabla 2.5 detalla la configuración de parámetros en el Modo SET_UP, operación que permite al usuario adaptar el comportamiento del sistema a su instalación.
+
+<p align="center"><em>Tabla 2.5: Caso de uso 3 — configuración de umbrales en Modo SET_UP.</em></p>
 
 | **Elemento** | **Definición** |
 | :--- | :--- |
@@ -185,7 +191,6 @@ Por último, la Tabla 2.5 detalla la configuración de parámetros en el Modo SE
 | Flujo alternativo B | Falla de escritura en EEPROM: el sistema retorna al Modo NORMAL con los parámetros aplicados en RAM pero no persistidos. |
 | Flujo alternativo C | El usuario ajusta los parámetros desde la aplicación web: los valores se envían por Bluetooth mediante comandos ASCII (`SET:MOD`, `SET:CRI`, `SET:TIM`, `SET:NIG`, `SET:OPM`) sin necesidad de ingresar al Modo SET_UP desde el teclado físico. |
 
-<p align="center"><em>Tabla 2.5: Caso de uso 3 — configuración de umbrales en Modo SET_UP.</em></p>
 
 ### 2.3 Descripción de módulos y tecnologías utilizadas
 
@@ -370,10 +375,65 @@ stateDiagram-v2
 
 Los modos de operación implementados son los siguientes:
 
-1. MODO_INIT: inicialización del hardware periférico y lectura de la configuración almacenada en la EEPROM.
-2. MODO_NORMAL: evaluación constante de la lógica de riego y monitoreo del ADC (joystick). Según la velocidad de viento medida y la lógica de inhibición configurada (directa o contrasector), el sistema determina qué sectores activar o inhibir.
-3. MODO_SETUP: menú interactivo a través del display LCD, navegable con pulsadores con antirrebote por software.
-4. MODO_FALLA: disparado por viento crítico o falla grave del ADC. Cierra todas las válvulas y activa las alarmas visuales y sonoras.
+1. MODO_NORMAL: evaluación constante de la lógica de riego y monitoreo del ADC (joystick). Según la velocidad de viento medida y la lógica de inhibición configurada (directa o contrasector), el sistema determina qué sectores activar o inhibir.
+2. MODO_SET_UP: menú interactivo a través del display LCD, navegable con pulsadores con antirrebote por software.
+3. MODO_FALLA: disparado por viento crítico o falla grave del ADC. Apaga todos los sectores y activa las alarmas visuales y sonoras.
+
+#### 3.2.1 Arquitectura de ejecución
+
+El *super-loop* está implementado en `app.c`. El mecanismo de temporización se basa en la interrupción `HAL_SYSTICK_Callback`, que incrementa el contador atómico `g_app_tick_cnt` cada 1 ms. En `app_update()`, el *loop* principal consume un *tick* y ejecuta las cinco tareas en orden fijo:
+
+1. `logger_update` — Bluetooth: procesa comandos entrantes y envía telemetría JSON cada 2 s.
+2. `task_sensor_update` — Escrutinio: muestrea ADC (DMA), actualiza filtro de promediado, hace *debounce* de botones y lee DIP *switches*.
+3. `task_system_update` — Procesamiento: ejecuta la FSM principal y la lógica de inhibición de riego.
+4. `task_display_update` — Presentación: renderiza el LCD según el modo activo.
+5. `task_actuator_update` — Actuación: escribe los GPIO de sectores, LEDs y buzzer.
+
+Una vez completadas las cinco tareas, el microcontrolador entra en modo *Sleep* (`HAL_PWR_EnterSLEEPMode`, `WFI`) hasta el siguiente *tick* de SysTick, reduciendo el consumo en reposo.
+
+#### 3.2.2 FSM de debounce de botones
+
+Cada uno de los tres botones físicos (ENTER, UP, DOWN) es procesado por una máquina de estados de cuatro estados, implementada en `task_sensor.c` con una ventana de 50 ms, tal como se ilustra en la Figura 3.5.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> BTN_ST_UP
+    BTN_ST_UP --> BTN_ST_FALLING : pin bajo (pulsado)
+    BTN_ST_FALLING --> BTN_ST_UP : rebote detectado (pin alto antes de 50 ms)
+    BTN_ST_FALLING --> BTN_ST_DOWN : estable ≥ 50 ms / flag = true
+    BTN_ST_DOWN --> BTN_ST_RISING : pin alto (liberado)
+    BTN_ST_RISING --> BTN_ST_DOWN : rebote detectado (pin bajo antes de 50 ms)
+    BTN_ST_RISING --> BTN_ST_UP : estable ≥ 50 ms
+```
+
+<p align="center"><em>Figura 3.5: FSM de debounce de botón (50 ms, activo bajo).</em></p>
+
+El evento `flag = true` generado en la transición a `BTN_ST_DOWN` es consumido por `task_system_update` y `task_display_update` mediante las funciones de interfaz `get_sensor_btn_*_pressed()`, que lo leen y lo limpian (*clear-on-read*).
+
+#### 3.2.3 Acondicionamiento de entradas analógicas
+
+Las tres entradas analógicas (VRX, VRY del joystick y LDR) se digitalizan simultáneamente mediante el ADC1 en modo de conversión continua con transferencia por DMA circular, sin interrupción de DMA activa (desactivada explícitamente para evitar *lockup* de CPU). El buffer se muestrea en cada *tick* directamente desde `task_sensor_update`.
+
+Sobre los canales VRX y VRY se aplica un filtro de promediado móvil (*moving average*) de ventana configurable por `FILTER_WINDOW_SIZE`. La velocidad del viento se calcula como la desviación máxima absoluta desde el centro (2048 cuentas), con una *deadzone* de ±800 cuentas para suprimir el ruido en reposo. El resultado se escala a un rango de 0–100 %.
+
+#### 3.2.4 Persistencia en EEPROM
+
+La configuración de usuario se almacena en una EEPROM AT24C02 (2 Kbit) vía bus I²C (`hi2c1`). La estructura `sys_settings_t` contiene cinco campos de 32 bits (umbral moderado, umbral crítico, duración de riego, habilitación nocturna y modo de operación) más un *checksum* aritmético de 4 bytes, totalizando 24 bytes.
+
+Al iniciar, `task_display_init()` lee la EEPROM y valida el *checksum*; si la validación falla (memoria vacía o corrompida), carga los valores por defecto y los escribe inmediatamente. La escritura se realiza byte a byte con un retardo de 5 ms por byte para respetar el ciclo de escritura del AT24C02.
+
+#### 3.2.5 Telemetría Bluetooth
+
+El módulo `logger.c` gestiona la comunicación a través de USART1 en modo no bloqueante por interrupciones. La telemetría se envía en formato JSON cada 2 s (`TELEMETRY_PERIOD_MS = 2000`) con la siguiente estructura:
+
+```json
+{"m":"NORMAL","v":35,"d":"N","s":[1,0,1,1],
+ "c_mod":40,"c_cri":80,"c_tim":60,
+ "c_nig":0,"c_inh":0,"c_opm":1,"c_lux":72}
+```
+
+Donde `m` es el modo del sistema, `v` la velocidad de viento (%), `d` la dirección, `s` el estado de los cuatro sectores, y los campos `c_*` los parámetros de configuración actuales. Los comandos de escritura recibidos (`SET:MOD`, `SET:CRI`, `SET:TIM`, `SET:NIG`, `SET:INH`, `SET:OPM`) son parseados y persistidos en EEPROM en el mismo ciclo.
 
 ### 3.3 Esquema Eléctrico y Vistas de Cableado
 
@@ -413,19 +473,193 @@ En la Figura 3.6 se muestra el panel principal de la aplicación, y en la Figura
 
 ## Capítulo 4: Ensayos y resultados
 
-### 4.1 Pruebas de integración Hardware-Software
+Esta sección presenta los ensayos realizados sobre el prototipo SRAGV, incluyendo pruebas funcionales de hardware y firmware, pruebas de integración, medición de consumo, análisis de tiempos de ejecución (WCET) y cumplimiento de requisitos.
 
-El funcionamiento integral del sistema puede observarse en el siguiente video de demostración: [Video de demostración del SRAGV](https://www.youtube.com/watch?v=nqkUKbYzUQc).
+### 4.1 Pruebas funcionales de hardware
 
-- Emulación con joystick: se verificó que las coordenadas VRX y VRY del joystick se traducen matemáticamente a un vector de magnitud y ángulo, permitiendo probar las cuatro direcciones (N, S, E, O) y velocidades del 0 al 100%.
-- DIP *switches*: se solucionaron problemas iniciales de pines flotantes configurando resistencias *pull-up* internas (`GPIO_PULLUP`), lo que permitió inhibir sectores individualmente de forma estable.
-- LEDs indicadores: se adoptó lógica activa alta (*active high*) con el ánodo conectado al pin y el cátodo a GND, lo que refleja fielmente las salidas digitales del microcontrolador.
+La Tabla 4.1 resume los ensayos funcionales de hardware realizados y su estado de validación.
 
-### 4.2 Pruebas de campo simuladas
+<p align="center"><em>Tabla 4.1: Ensayos funcionales de hardware.</em></p>
 
-Se validó la transición entre estados. Al someter el sistema a condiciones superiores al umbral crítico configurado (moviendo el joystick al extremo), la pantalla LCD reaccionó inmediatamente mostrando `SYSTEM FAULT!` y el LED de alerta parpadeó a 1 Hz, cumpliendo con la especificación de seguridad del producto.
+| Ensayo | Resultado | Estado |
+| :--- | :--- | :---: |
+| Integridad eléctrica del circuito (continuidad) | Validación previa a energización | ✅ |
+| ADC — joystick eje X (velocidad) | Rango 0–4095 cuentas, centrado en ~2048 | ✅ |
+| ADC — joystick eje Y (dirección) | Rango 0–4095 cuentas, centrado en ~2048 | ✅ |
+| ADC — LDR (luminosidad) | Respuesta diferencial entre luz y oscuridad verificada | ✅ |
+| DIP *switches* — 4 canales | Pines flotantes corregidos con `GPIO_PULLUP`; inhibición individual estable | ✅ |
+| LEDs de sector (N, S, E, O) | Lógica activa alta verificada; encendido y apagado por GPIO | ✅ |
+| LED de estado RUN (verde) | Enciende en MODO_NORMAL, se apaga en SET_UP y FALLA | ✅ |
+| LED ALERTA (rojo) + buzzer | Parpadeo a 1 Hz y tono sonoro verificados en MODO_FALLA | ✅ |
+| Display LCD 16×2 (interfaz paralela 4 bits) | Inicialización correcta; visualización de cadenas y valores numéricos | ✅ |
+| Módulo Bluetooth HM-10 (USART1) | Pairing y recepción de telemetría JSON verificados desde aplicación web | ✅ |
+| EEPROM AT24C02 (I²C) | Lectura y escritura verificadas; validación de *checksum* funcional | ✅ |
 
----
+
+### 4.2 Pruebas funcionales de firmware
+
+La Tabla 4.2 resume los ensayos funcionales de firmware realizados y su estado de validación.
+
+<p align="center"><em>Tabla 4.2: Ensayos funcionales de firmware.</em></p>
+
+| Ensayo | Resultado | Estado |
+| :--- | :--- | :---: |
+| *Debounce* de botones (ENTER, UP, DOWN) | Eventos limpios sobre FSM; ventana de 50 ms efectiva | ✅ |
+| Muestreo ADC + filtro de promediado móvil | Lecturas estables; ruido reducido en joystick en reposo | ✅ |
+| Escala velocidad de viento (0–100 %) | Mapeo lineal verificado; *deadzone* de ±800 cuentas operativa | ✅ |
+| Detección de dirección de viento (N/S/E/O) | Cuatro cuadrantes correctamente identificados por eje dominante | ✅ |
+| FSM del sistema (NORMAL / SET_UP / FALLA) | Transiciones válidas verificadas manualmente | ✅ |
+| Lógica de inhibición directa (Modo 2) | Sector en dirección del viento se apaga correctamente | ✅ |
+| Lógica de inhibición contrasector (Modo 1) | Sector opuesto al viento se apaga correctamente | ✅ |
+| Inhibición nocturna por LDR | Riego suspendido bajo umbral de luz cuando opción habilitada | ✅ |
+| Persistencia EEPROM — escritura y lectura | Configuración recuperada correctamente tras ciclo de energía | ✅ |
+| Persistencia EEPROM — valores por defecto | Valores por defecto cargados y escritos ante EEPROM vacía o corrompida | ✅ |
+| Telemetría Bluetooth — JSON periódica | Trama JSON enviada cada 2 s (`TELEMETRY_PERIOD_MS`) vía USART1 | ✅ |
+| Comandos Bluetooth — `SET:*` | Umbrales y configuración actualizados en RAM y EEPROM desde aplicación web | ✅ |
+| Menú SET_UP — 5 parámetros | Navegación UP/DOWN/ENTER funcional; validación MOD < CRI operativa | ✅ |
+| Bajo consumo — *Sleep* entre *ticks* | `HAL_PWR_EnterSLEEPMode(WFI)` ejecutado correctamente | ✅ |
+
+
+### 4.3 Pruebas de integración
+
+Se validó la interacción completa entre entradas físicas (joystick, DIP *switches*, botones), lógica de inhibición, visualización en LCD y telemetría hacia la aplicación web.
+
+*Video de integración en funcionamiento:*
+
+[Video de demostración del SRAGV](https://www.youtube.com/watch?v=nqkUKbYzUQc)
+
+### 4.4 Medición y análisis de consumo
+
+Para evaluar el consumo energético, se midió la corriente total suministrada al sistema (NUCLEO y periféricos). La Tabla 4.3 resume los valores pico de corriente y potencia medidos en los distintos modos de operación.
+
+<p align="center"><em>Tabla 4.3: Consumo total medido a 5 V (valores pico).</em></p>
+
+| Modo | Corriente pico (5V) [mA] | Potencia pico (5V) [W] | Observaciones |
+| :--- | ---: | ---: | :--- |
+| NORMAL sin módulo BT | 29,8 | 0,149 | Corriente base del MCU (con WFI sleep), sensores y LCD. |
+| NORMAL con BT conectado | 37,8 | 0,189 | Incremento de ~8 mA asociado a la transmisión activa de telemetría BLE (HM-10). |
+| FALLA (buzzer + LED activos) | 50,0 | 0,250 | Consumo máximo absoluto del sistema con los actuadores de alarma (buzzer) en funcionamiento. |
+
+
+Como se observa en los resultados, la estrategia de bajo consumo implementada en el firmware (Sleep WFI + baja carga computacional) logra mantener el consumo base por debajo de los 30 mA. El pico máximo absoluto de potencia del sistema completo bajo falla crítica es de tan solo 250 mW, permitiendo su alimentación segura a través de puertos USB convencionales o pequeñas baterías sin requerir disipación térmica adicional.
+
+### 4.5 Análisis de uso de memoria
+
+A partir del reporte de compilación del proyecto `Trabajo-FINAL_tdse.elf`, se obtuvieron los siguientes tamaños para las secciones principales:
+- `.text` (código e instrucciones): 31 508 bytes
+- `.data` (variables inicializadas): 136 bytes
+- `.bss` (variables sin inicializar): 3 096 bytes
+
+Teniendo en cuenta las características del microcontrolador utilizado (STM32F103RB, con 128 KB de memoria Flash y 20 KB de memoria RAM), el perfil de consumo de memoria del sistema es:
+
+- *Memoria Flash (ROM):* Uso de `.text` + `.data` = 31 644 bytes (sobre 131 072 bytes totales). *Ocupación: 24,14 %*
+- *Memoria RAM estática:* Uso de `.data` + `.bss` = 3 232 bytes (sobre 20 480 bytes totales). *Ocupación: 15,78 %*
+
+Ambas memorias cuentan con amplio margen disponible (más del 75 % libre). Esto garantiza factibilidad técnica para agregar nuevas funcionalidades al firmware en versiones futuras (por ejemplo, librerías de encriptación BLE, nuevas máquinas de estado o almacenamiento masivo) sin riesgo inminente de agotar los recursos.
+
+<div align="center">
+  <img width="649" height="97" alt="reporte compilacion" src="https://github.com/user-attachments/assets/976e593a-965f-45fd-917f-92a4fcae6f81" />
+  <p align="center"><em>Figura 4.1: Reporte de compilación y uso de Flash / RAM.</em></p>
+</div>
+
+### 4.6 Medición y análisis de WCET por tarea
+
+La Tabla 4.4 resume los resultados de tiempo de ejecución (WCET) obtenidos experimentalmente por tarea con el sistema en estado estable (modo NORMAL, joystick en reposo, sin pulsaciones de botones).
+
+<p align="center"><em>Tabla 4.4: Resultados de WCET por tarea (ventana de ~10 s en estado estable).</em></p>
+
+| Tarea | Período [µs] | Promedio [µs] | WCET [µs] | WCET absoluto [µs] |
+| :--- | ---: | ---: | ---: | ---: |
+| `task_sensor_update` | 1000 | 12 | 15 | 22 |
+| `task_system_update` | 1000 | 9 | 12 | 19 |
+| `task_actuator_update` | 1000 | 5 | 8 | 12 |
+
+
+*Observaciones:*
+- Las tareas principales de adquisición y control (`sensor`, `system`, `actuator`) presentan tiempos de ejecución sumamente acotados (menores a 25 µs).
+- Tareas asincrónicas como el refresco de pantalla y la transmisión por UART fueron omitidas de esta tabla central por tratarse de procesos esporádicos o gestionados por interrupción, cuyo análisis de WCET no impacta la criticidad del *super-loop* de control principal.
+
+### 4.7 Cálculo del factor de uso de CPU
+
+Para evaluar la carga temporal del sistema se calculó el factor de utilización de CPU:
+
+Donde C_i es el WCET de la tarea medido en la sección 4.6 y T_i = 1000 µs su período de activación.
+
+La Tabla 4.5 resume los parámetros y resultados del cálculo de utilización del CPU para las tareas críticas del sistema.
+
+<p align="center"><em>Tabla 4.5: Parámetros utilizados para el cálculo de U (tareas de control).</em></p>
+
+| Tarea | Promedio [µs] | WCET [µs] | Período [µs] | Uso Promedio | Uso Máximo (WCET) |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| `task_sensor_update` | 12 | 15 | 1000 | 0,012 | 0,015 |
+| `task_system_update` | 9 | 12 | 1000 | 0,009 | 0,012 |
+| `task_actuator_update` | 5 | 8 | 1000 | 0,005 | 0,008 |
+| **Total (U)** | — | — | — | **0,026 (2,6 %)** | **0,035 (3,5 %)** |
+
+
+El valor total máximo de uso de CPU es de apenas 3,5 %, lo que confirma que el procesador se encuentra ocioso la mayor parte del tiempo, permitiendo la entrada en modo *Sleep* sin riesgo de violar los plazos temporales (factibilidad de planificación garantizada).
+
+### 4.8 Gestión de bajo consumo
+
+El firmware implementa una estrategia de bajo consumo activa: al finalizar cada vuelta del *super-loop*, el microcontrolador entra en modo *Sleep* mediante `HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI)`. El sistema permanece en *Sleep* hasta que la próxima interrupción de SysTick (cada 1 ms) lo despierta, o bien hasta que llega una interrupción de UART (recepción Bluetooth). Esto reduce el consumo dinámico del CPU durante la mayor parte del tiempo de operación sin impactar en la respuesta del sistema.
+
+En una versión orientada a producto, correspondería profundizar esta estrategia:
+- Reducir la frecuencia de reloj del MCU al mínimo compatible con los periféricos activos.
+- Evaluar el uso de modo *Stop* entre eventos, con despertar por EXTI.
+- Migrar de Bluetooth clásico (HM-10/BLE) a un módulo de menor consumo en *advertising*.
+
+### 4.9 Cumplimiento de requisitos
+
+La Tabla 4.6 resume el cumplimiento final de los requisitos de la Tabla 2.2.
+
+<p align="center"><em>Tabla 4.6: Cumplimiento final de requisitos.</em></p>
+
+| ID | Requisito (resumen) | Hardware | Firmware | Estado |
+| :---: | :--- | :---: | :---: | :---: |
+| 1.1 | Joystick analógico — emulación de viento | 🟢 | 🟢 | ✅ |
+| 1.2 | Eje X = velocidad, Eje Y = dirección | 🟢 | 🟢 | ✅ |
+| 1.3 | LDR — luminosidad ambiente | 🟢 | 🟢 | ✅ |
+| 1.4 | ADC por DMA, sin *polling* bloqueante | 🟢 | 🟢 | ✅ |
+| 1.5 | Filtro de promediado sobre velocidad | N/A | 🟢 | ✅ |
+| 2.1 | 4 LEDs de sector (N, S, E, O) | 🟢 | 🟢 | ✅ |
+| 2.2 | Viento bajo → todos los sectores activos | 🟢 | 🟢 | ✅ |
+| 2.3 | Viento moderado → lógica de inhibición | 🟢 | 🟢 | ✅ |
+| 2.4 | Viento crítico → todos los sectores apagados | 🟢 | 🟢 | ✅ |
+| 2.5 | Temporización no bloqueante del riego | N/A | 🟢 | ✅ |
+| 3.1 | LEDs de estado RUN y ALERTA | 🟢 | 🟢 | ✅ |
+| 3.2 | LED ALERTA parpadea a 1 Hz en FALLA | 🟢 | 🟢 | ✅ |
+| 3.3 | Buzzer de alerta en MODO_FALLA | 🟢 | 🟢 | ✅ |
+| 3.4 | LCD 16×2 con interfaz paralela 4 bits | 🟢 | 🟢 | ✅ |
+| 4.1 | FSM: NORMAL / SET_UP / FALLA | N/A | 🟢 | ✅ |
+| 4.2 | NORMAL: lógica de riego y monitoreo ADC | N/A | 🟢 | ✅ |
+| 4.3 | NORMAL: inhibición nocturna por LDR | N/A | 🟢 | ✅ |
+| 4.4 | SET_UP: menú de configuración en LCD | N/A | 🟢 | ✅ |
+| 4.5 | FALLA: inhibición total + LCD + alarmas | 🟢 | 🟢 | ✅ |
+| 4.6 | Arranque en MODO_NORMAL | N/A | 🟢 | ✅ |
+| 5.1 | Botones con *debounce* no bloqueante | 🟢 | 🟢 | ✅ |
+| 5.2 | DIP *switches* — inhibición manual | 🟢 | 🟢 | ✅ |
+| 5.3 | Menú: umbral MOD, CRI, duración y sectores | N/A | 🟢 | ✅ |
+| 5.4 | LCD muestra velocidad (%) y luz en SET_UP | N/A | 🟢 | ✅ |
+| 6.1 | UART con HM-10, protocolo ASCII | 🟢 | 🟢 | ✅ |
+| 6.2 | Visualización de estado en tiempo real | N/A | 🟢 | ✅ |
+| 6.3 | Configuración remota de umbrales por BT | N/A | 🟢 | ✅ |
+| 6.4 | Inhibición manual de sector por BT | N/A | 🟢 | ✅ |
+| 7.1 | EEPROM AT24C02 vía I²C | 🟢 | 🟢 | ✅ |
+| 7.2 | Lectura + validación *checksum* al inicio | N/A | 🟢 | ✅ |
+| 7.3 | Carga de valores por defecto si EEPROM vacía | N/A | 🟢 | ✅ |
+| 8.1 | *Soft* RTC por contador SysTick de 1 ms | N/A | 🟢 | ✅ |
+| 9.1 | *Sleep* entre *ticks* (`WFI`) | N/A | 🟢 | ✅ |
+| 9.2 | Despertar por SysTick / UART | N/A | 🟢 | ✅ |
+| 10.1 | Detección de falla ADC | N/A | 🟡 | 🟡 |
+| 10.2 | Patrón Escrutar/Procesar/Actuar modular | N/A | 🟢 | ✅ |
+| 10.3 | *Super-loop* completa en < 1 ms | N/A | 🟢 | ✅ |
+
+
+Leyenda: 🟢 implementado · 🟡 parcialmente cumplido · 🔴 no implementado · ✅ cumplido
+
+Observación sobre el requisito 10.1: la condición de falla por ADC está contemplada en la FSM (`get_sensor_adc_error()`), pero el chequeo de saturación en `process_adc_data()` está comentado en el código final por considerar que los valores 0 y 4095 pueden ser válidos en el rango de uso del joystick.
+
+
 
 ## Capítulo 5: Conclusiones
 
