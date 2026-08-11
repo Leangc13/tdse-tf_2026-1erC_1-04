@@ -1,0 +1,7 @@
+../app/src/logger.c:74:6:logger_init	1
+../app/src/logger.c:84:6:logger_update	3
+../app/src/logger.c:102:6:logger_uart_rx_callback	5
+../app/src/logger.c:124:6:HAL_UART_RxCpltCallback	2
+../app/src/logger.c:132:6:HAL_UART_TxCpltCallback	2
+../app/src/logger.c:141:13:process_bt_command	9
+../app/src/logger.c:178:13:send_telemetry	10

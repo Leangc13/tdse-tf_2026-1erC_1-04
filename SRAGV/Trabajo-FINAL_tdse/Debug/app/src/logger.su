@@ -1,0 +1,7 @@
+../app/src/logger.c:74:6:logger_init	16	static
+../app/src/logger.c:84:6:logger_update	16	static
+../app/src/logger.c:102:6:logger_uart_rx_callback	8	static
+../app/src/logger.c:124:6:HAL_UART_RxCpltCallback	16	static
+../app/src/logger.c:132:6:HAL_UART_TxCpltCallback	16	static
+../app/src/logger.c:141:13:process_bt_command	40	static
+../app/src/logger.c:178:13:send_telemetry	120	static

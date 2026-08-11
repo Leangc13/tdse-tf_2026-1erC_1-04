@@ -1,0 +1,8 @@
+../app/src/task_sensor_interface.c:65:10:get_sensor_wind_speed	4	static
+../app/src/task_sensor_interface.c:70:10:get_sensor_wind_dir	4	static
+../app/src/task_sensor_interface.c:75:10:get_sensor_light	4	static
+../app/src/task_sensor_interface.c:80:6:get_sensor_adc_error	4	static
+../app/src/task_sensor_interface.c:85:9:get_sensor_dip_switches	4	static
+../app/src/task_sensor_interface.c:90:6:get_sensor_btn_enter_pressed	16	static
+../app/src/task_sensor_interface.c:97:6:get_sensor_btn_up_pressed	16	static
+../app/src/task_sensor_interface.c:104:6:get_sensor_btn_down_pressed	16	static
